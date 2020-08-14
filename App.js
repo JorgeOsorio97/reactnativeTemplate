@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, {useState} from 'react';
 
 // Expo
 import {StatusBar} from 'expo-status-bar';
@@ -15,14 +15,20 @@ import {StyleSheet, Text, View} from 'react-native';
 // Navigation
 import {NavigationContainer} from '@react-navigation/native';
 import LogInStack from './navigation/LogInStack';
+import MainStack from './navigation/MainStack';
 
 const store = createStore(reducers)
 
 export default function App() {
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
     return (
         <Provider store={store}>
             <NavigationContainer>
-                <LogInStack></LogInStack>
+                {isLoggedIn?
+                    <MainStack></MainStack>
+                :
+                    <LogInStack></LogInStack>
+                }
             </NavigationContainer>
             <StatusBar hidden={true}/>
         </Provider>
