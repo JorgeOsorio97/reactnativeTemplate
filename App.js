@@ -17,22 +17,32 @@ import {NavigationContainer} from '@react-navigation/native';
 import LogInStack from './navigation/LogInStack';
 import MainStack from './navigation/MainStack';
 
+// Elements
+import { ThemeProvider } from 'react-native-elements'
+import theme, { navigationTheme, colors } from './theme'
+
 const store = createStore(reducers)
 
 export default function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     return (
         <Provider store={store}>
-            <NavigationContainer>
-                {isLoggedIn?
-                    <MainStack></MainStack>
-                :
-                    <LogInStack></LogInStack>
-                }
-            </NavigationContainer>
-            <StatusBar hidden={true}/>
+            <ThemeProvider theme={theme}>
+                <NavigationContainer theme={navigationTheme}>
+                        {isLoggedIn
+                            ? <MainStack></MainStack>
+                            : <LogInStack></LogInStack>
+                        }
+                </NavigationContainer>
+                <StatusBar hidden={true}/>
+            </ThemeProvider>
         </Provider>
     );
 }
 
 
+const styles = StyleSheet.create({
+    mainStyle: {
+        backgroundColor: colors.mainBg,
+    },
+});

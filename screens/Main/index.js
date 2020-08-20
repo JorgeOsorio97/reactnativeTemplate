@@ -4,10 +4,14 @@ import React from 'react'
 // RN
 import {StyleSheet, Text, View, SafeAreaView} from "react-native";
 
+// Elements
+import { Button } from 'react-native-elements'
+
 const MainScreen = (props) => {
     return (
         <SafeAreaView style={styles.safecontainer}>
             <Text>Main</Text>
+            <Button title='Holis'/>
         </SafeAreaView>
     )
 }
